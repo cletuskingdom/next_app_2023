@@ -11,6 +11,10 @@ const Coins = ({
 	image,
 	priceChange,
 }) => {
+	const myLoader = () => {
+		return image;
+	};
+
 	return (
 		<div className={styles.coin__container}>
 			<div className={styles.coin__row}>
@@ -18,6 +22,7 @@ const Coins = ({
 					<Image
 						width="30"
 						height="30"
+						loader={myLoader}
 						src={image}
 						alt={name}
 						className={styles.coin__img}

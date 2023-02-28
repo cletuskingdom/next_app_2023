@@ -1,12 +1,15 @@
 module.exports = {
+	// images: {
+	// 	remotePatterns: [
+	// 		{
+	// 			protocol: "https",
+	// 			hostname: "**.coingecko.com",
+	// 			port: "",
+	// 			pathname: "/**",
+	// 		},
+	// 	],
+	// },
 	images: {
-		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "coingecko.com",
-				port: "",
-				pathname: "assets.coingecko.com",
-			},
-		],
+		domains: ["assets.coingecko.com/**"],
 	},
 };

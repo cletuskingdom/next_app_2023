@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import CoinList from "@/component/CoinList";
+import { useState, useEffect } from "react";
 
 export const getServerSideProps = async () => {
 	const res = await fetch(
@@ -22,6 +23,7 @@ const UserDashboard = ({ data }) => {
 			<h1>
 				<Link href="/">Back home</Link>
 			</h1>
+
 			<CoinList data={data} />
 		</div>
 	);
