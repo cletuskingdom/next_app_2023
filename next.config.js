@@ -1,6 +1,12 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
-
-module.exports = nextConfig
+module.exports = {
+	images: {
+		remotePatterns: [
+			{
+				protocol: "https",
+				hostname: "coingecko.com",
+				port: "",
+				pathname: "assets.coingecko.com",
+			},
+		],
+	},
+};
