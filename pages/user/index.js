@@ -1,31 +1,40 @@
-import Link from "next/link";
-import React from "react";
-import Image from "next/image";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import CoinList from "@/component/CoinList";
-import { useState, useEffect } from "react";
+import Link from "next/link";
 
-export const getServerSideProps = async () => {
-	const res = await fetch(
-		"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
-	);
-	const data = await res.json();
+export default function UserDashboard() {
+	const [count, setCount] = useState(0);
+	const [data, setData] = useState(null);
 
-	return {
-		props: {
-			data,
-		},
-	};
-};
+	useEffect(() => {
+		async function fetchData() {
+			try {
+				const res = await fetch(
+					"https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
+				);
+				const data = await res.json();
+				// setData(data);
+			} catch (err) {
+				console.log(err);
+			}
+		}
+		fetchData();
+		// const interval = setInterval(() => fetchData(), 2000);
+		// return () => {
+		// 	clearInterval(interval);
+		// };
+	}, []);
 
-const UserDashboard = ({ data }) => {
 	return (
 		<div>
 			<h1>
 				<Link href="/">Back home</Link>
 			</h1>
 
-			<CoinList data={data} />
+			{data.map((coins) => {
+				<li>{coins.id}</li>;
+			})}
 		</div>
 	);
-};
-export default UserDashboard;
+}
